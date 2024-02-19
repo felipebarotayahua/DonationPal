@@ -1,0 +1,32 @@
+/* styles/CampaignCard.css */
+.campaign-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Align cards in rows */
+}
+
+.campaign-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 40px 20px 40px 75px; /* Adjust margins as needed for spacing */
+  width: calc(33.33% - 100px); /* Adjust width and margins as needed */
+  min-width: 200px; /* Adjust as needed */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  display: inline-block;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.campaign-card:hover {
+  transform: scale(1.05);
+}
+
+.campaign-card h2 {
+  margin-bottom: 10px;
+}
+
+.campaign-card p {
+  color: #555;
+}

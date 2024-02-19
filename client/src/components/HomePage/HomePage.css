@@ -1,0 +1,11 @@
+/* styles/HomePage.css */
+.home-page {
+  max-width: 800px;
+  margin: 10 auto;
+}
+
+.campaign-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}

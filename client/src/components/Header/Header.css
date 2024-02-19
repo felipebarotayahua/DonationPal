@@ -1,0 +1,23 @@
+.app-header {
+  background-color: #333; /* Adjust the background color as needed */
+  color: white; /* Adjust the text color as needed */
+  padding: 10px; /* Add padding for spacing */
+
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px; /* Add margin between navigation items */
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}

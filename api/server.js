@@ -14,6 +14,7 @@ const apiRouter = require('./routes/api/v1')
 const app = express();
 
 //connect to mongo via mongoose
+mongoose.set('strictQuery',false)
 mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
   useUnifiedTopology: true,
   useNewUrlParser: true
@@ -26,6 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors());
 
 // link to routes
 // app.use('/', indexRouter);
