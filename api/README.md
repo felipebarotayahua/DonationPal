@@ -1,0 +1,1 @@
+This is a full-stack website using the MERN technologies. We are able to view and access data on MongoDB. This data is specifically Campaigns, Donations to Campaigns, and Users who have donated to specific Campaigns. 
