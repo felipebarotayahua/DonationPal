@@ -7,7 +7,7 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-             <a href="/Home">Home</a> 
+             <a href="/api/v1/campaigns">Home</a> 
           </li>
           {/* Add more navigation links as needed */}
         </ul>

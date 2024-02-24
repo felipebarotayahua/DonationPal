@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import CampaignCard from '/Users/felipebarotayahua/School/CIT436/DonationPal/client/src/components/CampaignCard/CampaignCard.js';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [campaigns, setCampaigns] = useState([]);
 
   useEffect(() => {
-    //fetched api/v1/campaigns to get all info on all campaigns
+    // fetched api/v1/campaigns to get all info on all campaigns
     fetch('http://localhost:8080/api/v1/campaigns')
       .then(response => response.json())
       .then(data => setCampaigns(data))
@@ -15,10 +15,11 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      <h1></h1>
       <div className="campaign-list">
         {campaigns.map(campaign => (
-          <CampaignCard key={campaign._id} campaign={campaign} />
+          <Link to={`/api/v1/campaigns/${campaign._id}`} key={campaign._id} style={{ display: 'block' }}>
+            <CampaignCard campaign={campaign} />
+          </Link>
         ))}
       </div>
     </div>

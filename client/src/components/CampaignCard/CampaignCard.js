@@ -1,16 +1,19 @@
 import React from 'react';
-import './CampaignCard.css'
+import './CampaignCard.css';
+import { Link } from 'react-router-dom';
 
 
 
 const CampaignCard = ({ campaign }) => {
   return (
     <div className="campaign-card">
-      <h2>{campaign.name}</h2>
-      <p>{campaign.description}</p>
-      {/* Add more details as needed */}
+      <div className="campaign-card-content">
+        <h2 className="campaign-card-title">{campaign.name}</h2>
+        <p className="campaign-card-description">{campaign.description}</p>
+      </div>
     </div>
   );
 };
 
 export default CampaignCard;
+
