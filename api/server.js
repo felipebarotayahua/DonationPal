@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 // Middleware to initialize Passport
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 // link to routes
 // app.use('/', indexRouter);
