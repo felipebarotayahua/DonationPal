@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
 import DetailPage from './components/DetailPage/DetailPage';
+import LoginPage from 'pages/LoginPage/LoginPage';
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
           <Route path="/api/v1/campaigns/:id" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
+      <LoginPage/>
     </div>
+    
   );
 }
 
