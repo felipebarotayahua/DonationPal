@@ -9,6 +9,12 @@ const Header = () => {
           <li>
              <a href="/api/v1/campaigns">Home</a> 
           </li>
+          <li>
+          <a href="/login">Profile</a>
+          </li>
+          <li>
+          <a href="/logout">Logout</a>
+          </li>
           {/* Add more navigation links as needed */}
         </ul>
       </nav>

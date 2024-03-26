@@ -1,44 +1,60 @@
-import { useState } from "react"
+import { useState, useContext } from 'react';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { APIURLContext } from 'context/APIURLContext';
+import axios from 'axios';
+import useToken from 'hooks/useToken';
 
 export default function LoginForm() {
-  const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({});
+    const apiURL = useContext(APIURLContext);
+    const { token, setToken } = useToken();
+    const navigate = useNavigate();
 
-  //Handler function for form field changes
-  const handleChange = (event) => {
-    const fieldName = event.target.name;
-    const fieldValue = event.target.value;
-    setInputs(values => ({...values, [fieldName]: fieldValue}));
-  }
+    if (token) {
+        return <Navigate replace to='/profile' />;
+    }
 
-  //Handler function
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`You entered ${inputs.email} and ${inputs.password}`);
-  }
-  return(
-    //Login form goes here
-    <form method="post" onSubmit={handleSubmit}>
-      <label> Input your email address: 
-        <input
-          type="text"
-          value = {inputs.email || ""}
-          name = "email"
-          onChange={handleChange}
-          />
-      </label><br/>
+    async function loginUser(credentials) {
+        try {
+            const response = await axios.post(`${apiURL}/users/login`, credentials);
+            return response.data;
+        } catch (error) {
+            console.error('Login error:', error);
+            throw error;
+        }
+    }
 
-      <label> Input your password: 
-        <input
-          type="password"
-          value={inputs.password || ""}
-          name = "password"
-          onChange={handleChange}
-          
-          />
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setInputs({ ...inputs, [name]: value });
+    }
 
-      </label><br/>
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const loginResponse = await loginUser(inputs);
+            setToken(loginResponse.accessToken);
+            navigate('/profile');
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                alert('Invalid email or password');
+            } else {
+                alert('An unexpected error occurred');
+            }
+        }
+    }
 
-      <input type="submit" value = "Log In"/>
-    </form>
-  )
+    return (
+        <form onSubmit={handleSubmit}>
+            <label>Email:
+                <input type="text" name="email" 
+                value={inputs.email || ''} 
+                onChange={handleChange} />
+            </label><br />
+            <label>Password:
+                <input type="password" name="password" value={inputs.password || ''} onChange={handleChange} />
+            </label><br />
+            <button type="submit">Login</button>
+        </form>
+    );
 }

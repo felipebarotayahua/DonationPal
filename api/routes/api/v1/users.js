@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 
 router.get('/', (req, res) => {
     res.send('Root API route'); 

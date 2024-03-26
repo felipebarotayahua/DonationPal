@@ -12,21 +12,22 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    name: {
+        title: { type: String },
+        first: { type: String },
+        last: { type: String }
     }
 });
 
-// Create a "pre-hook" that will run prior to a record being saved
-// Hash the incoming password 10x and then store the hashed password back to the user object
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
     const user = this;
     const hash = await bcrypt.hash(this.password, 10);
     this.password = hash;
     next();
 });
 
-// Create a helper function that uses bcrypt to check the plain text version 
-// of the password against the hashed version
-UserSchema.methods.isValidPassword = async function(encryptedPassword) {
+UserSchema.methods.isValidPassword = async function (encryptedPassword) {
     const user = this;
     const compare = await bcrypt.compare(encryptedPassword, user.password);
     return compare;

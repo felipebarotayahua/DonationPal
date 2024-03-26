@@ -5,13 +5,14 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongoose = require('mongoose')
-const cors = require('cors')
+const cors = require('cors');
+const mongoose = require('mongoose');
 const passport = require('passport');
 
 //Routers
 const apiRouter = require('./routes/api/v1')
 const usersRouter = require('./routes/api/v1/users')
+var ordersRouter = require('./routes/api/v1/orders');
 //App initialization
 const app = express();
 
@@ -42,5 +43,6 @@ app.use(cors());
 // app.use('/', indexRouter);
 app.use('/api/v1', apiRouter)
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/orders', passport.authenticate('jwt', {session: false}), ordersRouter);
 
 module.exports = app;
